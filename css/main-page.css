@@ -1,0 +1,197 @@
+/* main-page.html cascading style sheets */
+
+@import url( 'https://fonts.googleapis.com/css?family=Roboto&display=swap' );
+ 
+body {
+	
+	font-family: Roboto, sans-serif;
+	background-color:  rgba( 0, 190, 0, 1 );
+	/* background-color: rgba( 210, 210, 210, .2 ); */
+
+}
+
+h1 {
+	text-align: center;
+}
+
+
+/* div cascading style sheet */
+
+div.icon {
+	
+	height: 15%;
+	width: 13%;
+	
+	position: absolute;
+
+	/* backgrounds */
+	background-repeat: no-repeat;
+	background-size: 70% auto;
+	background-position: center;
+	background-color: rgba( 200, 200, 200, .8 );
+	
+	/* border */
+	border-width: 1%;
+	border-color: black;
+	border-style: solid;
+	
+}
+
+div.icon:hover {
+	
+	background-color: rgba( 200, 200, 200, 1 );
+	
+	transition-duration: ms;
+	
+}
+
+div#l11 {
+	
+	/* background-image: url( 'images/flower.png' ); */
+	
+	top: 15%;
+	left: 19%;
+	
+}
+
+div#l12 {
+	
+	/* background-image: url( 'images/cloud.png' ); */
+	
+	top: 15%;
+	left: 34%; /* 4% distance*/
+	
+}
+
+div#l13 {
+	
+	/* background-image: url( 'images/heart.png' ); */
+	
+	top: 15%;
+	left: 50%;
+	
+}
+
+div#l14 {
+	
+	/* background-image: url( 'images/house.png' ); */
+	
+	top: 15%;
+	left: 66%;
+	
+}
+
+div#l15 {
+	
+	/* background-image: url( 'images/man.png' ); */
+	
+	top: 33%;
+	left: 19%;
+	
+}
+
+div#l16 {
+	
+	/* background-image: url( 'images/woman.png' ); */
+	top: 33%;
+	left: 34%;
+	
+}
+
+div#l17 {
+	
+	/* background-image: url( 'images/road.png' ); */
+	
+	top: 33%;
+	left: 50%;
+	
+}
+
+div#l18 {
+		
+	/* background-image: url( 'images/tomato.png' ); */
+	
+	top: 33%;
+	left: 66%;
+	
+}
+
+/* pair ( name2 ) 15  */
+
+
+div#l21 {
+	
+	/* background-image: url( 'images/flower.png' ); */
+	
+	top: 51%;
+	left: 19%;
+	
+}
+
+div#l22 {
+	
+	/* background-image: url( 'images/cloud.png' ); */
+	
+	top: 51%;
+	left: 34%; /* 4% distance*/
+	
+}
+
+div#l23 {
+	
+	/* background-image: url( 'images/heart.png' ); */
+	
+	top: 51%;
+	left: 50%;
+	
+}
+
+div#l24 {
+	
+	/* background-image: url( 'images/house.png' ); */
+	
+	top: 51%;
+	left: 66%;
+	
+}
+
+div#l25 {
+	
+	/* background-image: url( 'images/man.png' ); */
+	
+	top: 69%;
+	left: 19%;
+	
+}
+
+div#l26 {
+	
+	/* background-image: url( 'images/woman.png' ); */
+	
+	top: 69%;
+	left: 34%;
+	
+}
+
+div#l27 {
+	
+	/* background-image: url( 'images/road.png' ); */
+	
+	top: 69%;
+	left: 50%;
+	
+}
+
+div#l28 {
+		
+	/* background-image: url( 'images/tomato.png' ); */
+	
+	top: 69%;
+	left: 66%;
+	
+}
+
+.restart {
+	opacity: 0;
+	/*continue here*/
+}
