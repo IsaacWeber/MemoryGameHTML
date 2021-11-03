@@ -16,8 +16,7 @@ var divBG1V = -1, divBG2V = -1;
 var divIndex1 = -1, divIndex2 = -1;
 // console.log( typeof(div1Selected), typeof(div2Selected))
 
-
-function startGame() {
+function startGame() { //change bg divs and configs about this
 	let index = 0; //the first is 0
 	do { //adding bgs into divs
 	
@@ -64,11 +63,13 @@ startGame();
 
 let usedDivs = ['-', '-', '-', '-', '-', '-', '-', '-',
 	'-', '-', '-', '-', '-', '-', '-', '-']
-var blocked = false;
+var blocked = false; //global vars
+var gameEnded = false;
+
 for (let count = 0; count < divs.length; ++count) {
 	let divNumber = undefined;
-	divs[count].addEventListener('click', function () {
-		console.log(blocked);
+	divs[count].addEventListener('click', function () { //onclick at some div
+
 		if (!blocked) { //if it is not blocked
 	
 			divNumber = getNumberById(this.id);
@@ -110,8 +111,11 @@ for (let count = 0; count < divs.length; ++count) {
 					divIndex1 = -1;
 					divIndex2 = -1
 					
-					if(isAllSelected(usedDivs)){
-						//restart();					
+					if(isAllSelected(usedDivs)){ //all divs were selected
+						blocked = true; //unblock when clicked yesbutton (see yesButton handler as needed)
+						gameEnded = true;
+						restart();
+						
 					} 
 					
 				}
@@ -121,21 +125,25 @@ for (let count = 0; count < divs.length; ++count) {
 	});
 
 	divs[count].addEventListener('mouseover', function () {
-		let n = getNumberById(this.id);
-		if(usedDivs[n] === 	 '-') {
-			bgNumber = bgDivNumber[n]; //get bg number
-			if (bgNumber != divBG1V && bgNumber != divBG2V) { //if it doesnt have a bg image	
-				this.style.background = 'rgba(200, 200, 200, 1)';
+		if(!gameEnded) {
+			let n = getNumberById(this.id);
+			if(usedDivs[n] === 	'-') {
+				bgNumber = bgDivNumber[n]; //get bg number
+				if (bgNumber != divBG1V && bgNumber != divBG2V) { //if it doesnt have a bg image	
+					this.style.background = 'rgba(200, 200, 200, 1)';
+				}
 			}
 		}
 	});
 
 	divs[count].addEventListener('mouseout', function () {
-		let n = getNumberById(this.id);
-		if(usedDivs[n] === 	 '-') {
-			bgNumber = bgDivNumber[n]; //get bg number
-			if (bgNumber != divBG1V && bgNumber != divBG2V) { //if it doesnt have a bg image	
-				this.style.background = 'rgba(200, 200, 200, .8)';
+		if(!gameEnded) {
+			let n = getNumberById(this.id);
+			if(usedDivs[n] === 	 '-') {
+				bgNumber = bgDivNumber[n]; //get bg number
+				if (bgNumber != divBG1V && bgNumber != divBG2V) { //if it doesnt have a bg image	
+					this.style.background = 'rgba(200, 200, 200, .8)';
+				}
 			}
 		}
 	});
@@ -145,23 +153,91 @@ for (let count = 0; count < divs.length; ++count) {
 function restart() {
 	selectedDivs = ['-', '-', '-', '-', '-', '-', '-', '-',
 	'-', '-', '-', '-', '-', '-', '-', '-'];
+	usedDivs = ['-', '-', '-', '-', '-', '-', '-', '-',
+	'-', '-', '-', '-', '-', '-', '-', '-'];
 	selectedBgs = ['-', '-', '-', '-', '-', '-', '-', '-'];
 	bgDivNumber = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	
-	startGame();					
-	for(let i = 0; divs.length; i++) {
-		divs[i].style.background = 'rgba(200, 200, 200, .8)';
-	}
-	
+	setTimeout(createRestartFrame(), 800);
 
 }
 
 function createRestartFrame() {
-	//continue here
+	let body = document.querySelector('body');
+	body.style.backgroundColor = 'beige';
+	document.getElementById('game-title').style.color = 'rgba(180, 180, 180, 1)';	
+	
+	let restartDivRemoved = false;
+
+	divs.forEach((item) => {
+		item.style.borderColor = 'rgba(255, 255, 255, .1)'; //light gray
+	});
+
+	let restartDiv = document.createElement('div');
+	restartDiv.innerHTML= 'Play Again?<br/>';
+	restartDiv.classList.add('restart-div');
+
+	let yesButton = document.createElement('button');
+	yesButton.setAttribute('type', 'button');
+	yesButton.setAttribute('class', 'button');
+	yesButton.innerText = 'yes';
+
+	yesButton.addEventListener('click', () => { //start a new game
+		body.style.backgroundColor = 'rgba( 0, 190, 0, 1 )';
+		document.getElementById('game-title').style.color = 'black';
+		divs.forEach((item) => {
+			item.style.background = 'rgba(200, 200, 200, .8)';
+			item.style.borderColor = 'black'; //light gray
+		});
+		restartDiv.remove();
+		startGame();
+		blocked = false; //unblock
+		gameEnded = false; //game restarted
+	} );
+
+	let message = document.getElementById('message'); //message to user replay
+	message.classList.add('message');
+
+	let noButton = document.createElement('button');
+	noButton.setAttribute('type', 'button');
+	noButton.setAttribute('class', 'button')
+	noButton.innerText = 'no';
+	
+	noButton.addEventListener('click', () => {
+		restartDiv.remove();
+		restartDivRemoved = true;
+		message.innerText = 'Press R or ESC to play again!';
+	});
+
+	let closeButton = document.createElement('button');
+	closeButton.setAttribute('type', 'button');	
+	closeButton.setAttribute('class', 'button');
+	closeButton.innerText = 'close';
+
+	closeButton.addEventListener('click', () => {
+		restartDiv.remove(); 
+		restartDivRemoved = true;
+		message.innerText = 'Press R or ESC to play again!';
+	});
+
+	document.addEventListener('keyup', (e) => {
+		if(gameEnded) {
+			if(e.key === 'Escape' || e.key === 'r') {
+				if(restartDivRemoved) {
+					createRestartFrame();
+					restartDivRemoved = false;
+					message.innerText = '';
+				}
+			}
+		}
+		
+	});
+
+	restartDiv.append(yesButton, noButton, closeButton);
+
+	document.querySelector('body').appendChild(restartDiv);
 }
 
 
-//
 function getNumberById(id) {
 
 	let number = undefined; //number to return
