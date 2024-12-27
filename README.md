@@ -6,12 +6,12 @@
 # Descrição
 Jogo da memória que temos costume de jogar com cartas e figurinhas. Procure os pares de imagens clicando nos quadrados. Quando terminar, você pode jogar novamente com as imagens embaralhadas novamente.
 # Telas
-* Procurando 1° par.
+* Procurando 1° par
   
 ![jogando1](https://github.com/user-attachments/assets/074332b4-9594-49d4-a45d-943dadee6286)
 
-* Procurando 2° par.
-* ![jogando2](https://github.com/user-attachments/assets/0590c1b6-6099-482a-bfff-de6e95186995)
+* Procurando 2° par
+![jogando2](https://github.com/user-attachments/assets/0590c1b6-6099-482a-bfff-de6e95186995)
 
 * Zerando
 
@@ -20,7 +20,7 @@ Jogo da memória que temos costume de jogar com cartas e figurinhas. Procure os 
 * Inglês
 # Como Jogar
 * Faça o download do arquivo .zip do projeto
-* Extraia o arquivo .zip.
-* Entre na pasta que foi extraída, depois vá na pasta html e abra o arquivo main-page.html.
+* Extraia o arquivo .zip
+* Entre na pasta que foi extraída, depois vá na pasta html e abra o arquivo main-page.html
 
-Divirtam-se
+Divirtam-se!
